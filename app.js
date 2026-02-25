@@ -977,6 +977,9 @@
     const content = document.getElementById('wizard-result-content');
     content.innerHTML = renderWizardResultHTML(result, wizardAnswers);
     lucide.createIcons();
+    
+    // Initialize prompt generator
+    initPromptGenerator();
   }
 
   function matchDecisionRule(answers) {
@@ -1022,6 +1025,39 @@
       result: adjustedResult,
       answers: answers
     };
+  }
+
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+  }
+
+  function findPlaybookForResult(data) {
+    const r = data.result;
+    const answers = data.answers;
+    
+    // Try to find a matching playbook based on the result
+    const playbooks = seedData.playbooks;
+    
+    // Map app types to playbook IDs
+    const appTypeToPlaybook = {
+      'landing': 'P_LP_LEADS',
+      'saas': 'P_SAAS_MVP',
+      'crm': 'P_CRM_SIMPLE',
+      'dashboard': 'P_DASHBOARD',
+      'agent': 'P_AGENT_BUILDER',
+      'automation': 'P_EMAIL_AUTO',
+      'bot_whatsapp': 'P_BOT_WA'
+    };
+    
+    const playbookId = appTypeToPlaybook[answers.app_type];
+    return playbooks.find(p => p.id === playbookId);
   }
 
   function renderWizardResultHTML(data, answers) {
@@ -1101,7 +1137,83 @@
       </div>`;
     }
 
+    // Prompt Generator
+    const playbook = findPlaybookForResult(data);
+    if (playbook && playbook.prompt_generator) {
+      html += `<div class="result-section">
+        <div class="result-section-title">⚡ Gerador de Prompts</div>
+        <div class="prompt-generator" data-playbook-id="${playbook.id}">
+          <p class="prompt-gen-desc">Personalize o prompt para sua necessidade específica:</p>
+          <div class="prompt-gen-form">
+            ${playbook.prompt_generator.inputs.map(input => `
+              <div class="prompt-gen-input">
+                <label>${input.label}</label>
+                <input type="text" class="prompt-input" data-input-id="${input.id}" placeholder="${input.placeholder}" />
+              </div>
+            `).join('')}
+          </div>
+          <div class="prompt-gen-preview">
+            <div class="prompt-preview-label">Preview do Prompt:</div>
+            <div class="prompt-preview-box" data-template="${escapeHtml(playbook.prompt_generator.template)}">
+              <code id="prompt-preview-code"></code>
+            </div>
+            <button class="btn btn-secondary prompt-copy-btn" data-playbook-id="${playbook.id}">
+              <i data-lucide="copy"></i> Copiar Prompt
+            </button>
+          </div>
+        </div>
+      </div>`;
+    }
+
     return html;
+  }
+
+  function initPromptGenerator() {
+    const promptInputs = document.querySelectorAll('.prompt-input');
+    const previewBox = document.querySelector('.prompt-preview-box');
+    
+    if (!promptInputs.length || !previewBox) return;
+    
+    function updatePromptPreview() {
+      const template = previewBox.dataset.template;
+      let prompt = template;
+      
+      promptInputs.forEach(input => {
+        const inputId = input.dataset.inputId;
+        const value = input.value || '';
+        const regex = new RegExp('{{\\s*' + inputId + '\\s*}}', 'g');
+        prompt = prompt.replace(regex, value);
+      });
+      
+      const stackElement = document.querySelector('.result-stack-pills');
+      if (stackElement) {
+        const stackItems = Array.from(stackElement.querySelectorAll('.result-pill')).map(p => p.textContent).join(', ');
+        prompt = prompt.replace(/{{\s*stack_recomendada\s*}}/g, stackItems);
+      }
+      
+      const codeEl = document.getElementById('prompt-preview-code');
+      if (codeEl) {
+        codeEl.textContent = prompt;
+      }
+    }
+    
+    promptInputs.forEach(input => {
+      input.addEventListener('input', updatePromptPreview);
+    });
+    
+    updatePromptPreview();
+    
+    const copyBtn = document.querySelector('.prompt-copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const promptText = document.getElementById('prompt-preview-code').textContent;
+        navigator.clipboard.writeText(promptText).then(() => {
+          showToast('Prompt copiado para a area de transferencia!', 'success');
+        }).catch(() => {
+          showToast('Erro ao copiar. Tente novamente.', 'error');
+        });
+      });
+    }
   }
 
   // ============================================
