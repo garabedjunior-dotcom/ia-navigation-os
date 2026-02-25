@@ -165,7 +165,26 @@
 
       <!-- Wizard Result -->
       <div id="wizard-result" class="hidden">
-        <div id="wizard-result-content"></div>
+        <!-- Result Tabs -->
+        <div class="result-tabs">
+          <button class="result-tab active" data-tab="stack">
+            <i data-lucide="layers"></i> Stack Recomendada
+          </button>
+          <button class="result-tab" data-tab="prompt">
+            <i data-lucide="zap"></i> ⚡ Gerador de Prompts
+          </button>
+        </div>
+
+        <!-- Tab: Stack -->
+        <div id="tab-stack" class="result-tab-content active">
+          <div id="wizard-result-content"></div>
+        </div>
+
+        <!-- Tab: Prompt Generator -->
+        <div id="tab-prompt" class="result-tab-content">
+          <div id="wizard-prompt-content"></div>
+        </div>
+
         <div class="wizard-result-actions">
           <button id="wizard-restart" class="btn btn-ghost">
             <i data-lucide="refresh-cw"></i> Refazer

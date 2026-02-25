@@ -1174,3 +1174,205 @@ body {
 .prompt-copy-btn:active {
   transform: translateY(0);
 }
+
+/* ============================================
+   RESULT TABS (Stack | Gerador de Prompts)
+   ============================================ */
+.result-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 16px 24px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.result-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: all var(--transition);
+}
+
+.result-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.result-tab.active {
+  color: var(--accent-indigo);
+  border-bottom-color: var(--accent-indigo);
+  background: rgba(99,102,241,0.06);
+}
+
+.result-tab svg {
+  width: 15px;
+  height: 15px;
+}
+
+.result-tab-content {
+  display: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px 24px;
+  max-height: calc(85vh - 220px);
+}
+
+.result-tab-content.active {
+  display: block;
+}
+
+/* ============================================
+   PROMPT GENERATOR TAB
+   ============================================ */
+.prompt-generator-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.prompt-gen-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prompt-gen-badge {
+  display: inline-block;
+  background: rgba(99,102,241,0.12);
+  color: var(--accent-indigo);
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.prompt-gen-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.prompt-gen-stack-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.prompt-gen-stack-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.prompt-gen-stack-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.prompt-gen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.prompt-gen-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prompt-gen-input label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.prompt-gen-input input {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.prompt-gen-input input:focus {
+  outline: none;
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+.prompt-gen-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prompt-preview-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prompt-preview-box {
+  background: #0d1117;
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  min-height: 100px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.prompt-preview-box code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: #c9d1d9;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  display: block;
+}
+
+.prompt-gen-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.prompt-gen-empty-icon {
+  font-size: 2.5rem;
+}

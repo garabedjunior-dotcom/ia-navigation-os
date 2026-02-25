@@ -974,11 +974,33 @@
     const resultEl = document.getElementById('wizard-result');
     resultEl.classList.remove('hidden');
 
+    // Populate Stack tab
     const content = document.getElementById('wizard-result-content');
     content.innerHTML = renderWizardResultHTML(result, wizardAnswers);
+
+    // Populate Prompt tab
+    const promptContent = document.getElementById('wizard-prompt-content');
+    promptContent.innerHTML = renderPromptGeneratorHTML(result, wizardAnswers);
+
     lucide.createIcons();
-    
-    // Initialize prompt generator
+
+    // Tab switching logic
+    document.querySelectorAll('.result-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.result-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.result-tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        const tabId = 'tab-' + tab.dataset.tab;
+        document.getElementById(tabId).classList.add('active');
+        lucide.createIcons();
+        // Re-init prompt generator when switching to prompt tab
+        if (tab.dataset.tab === 'prompt') {
+          initPromptGenerator();
+        }
+      });
+    });
+
+    // Initialize prompt generator (pre-load)
     initPromptGenerator();
   }
 
@@ -1137,80 +1159,112 @@
       </div>`;
     }
 
-    // Prompt Generator
-    const playbook = findPlaybookForResult(data);
-    if (playbook && playbook.prompt_generator) {
-      html += `<div class="result-section">
-        <div class="result-section-title">⚡ Gerador de Prompts</div>
-        <div class="prompt-generator" data-playbook-id="${playbook.id}">
-          <p class="prompt-gen-desc">Personalize o prompt para sua necessidade específica:</p>
-          <div class="prompt-gen-form">
-            ${playbook.prompt_generator.inputs.map(input => `
-              <div class="prompt-gen-input">
-                <label>${input.label}</label>
-                <input type="text" class="prompt-input" data-input-id="${input.id}" placeholder="${input.placeholder}" />
-              </div>
-            `).join('')}
-          </div>
-          <div class="prompt-gen-preview">
-            <div class="prompt-preview-label">Preview do Prompt:</div>
-            <div class="prompt-preview-box" data-template="${escapeHtml(playbook.prompt_generator.template)}">
-              <code id="prompt-preview-code"></code>
-            </div>
-            <button class="btn btn-secondary prompt-copy-btn" data-playbook-id="${playbook.id}">
-              <i data-lucide="copy"></i> Copiar Prompt
-            </button>
-          </div>
-        </div>
-      </div>`;
-    }
-
     return html;
   }
 
+  function renderPromptGeneratorHTML(data, answers) {
+    const playbook = findPlaybookForResult(data);
+    const r = data.result;
+    const stackStr = (r.primary_stack || []).join(', ');
+
+    if (!playbook || !playbook.prompt_generator) {
+      return `<div class="prompt-gen-empty">
+        <div class="prompt-gen-empty-icon">⚡</div>
+        <p>Preencha o Wizard para gerar um prompt personalizado.</p>
+      </div>`;
+    }
+
+    const pg = playbook.prompt_generator;
+    return `
+      <div class="prompt-generator-tab">
+        <div class="prompt-gen-header">
+          <div class="prompt-gen-badge">Playbook: ${playbook.goal}</div>
+          <p class="prompt-gen-desc">Preencha os campos abaixo e copie o prompt pronto para usar no <strong>Cursor</strong>, <strong>ChatGPT</strong> ou <strong>Claude</strong>:</p>
+        </div>
+
+        <div class="prompt-gen-stack-info">
+          <span class="prompt-gen-stack-label">Stack selecionada:</span>
+          <span class="prompt-gen-stack-pills">${(r.primary_stack || []).map(s => `<span class="result-pill highlight">${s}</span>`).join('')}</span>
+        </div>
+
+        <div class="prompt-gen-form">
+          ${pg.inputs.map(input => `
+            <div class="prompt-gen-input">
+              <label for="pgi-${input.id}">${input.label}</label>
+              <input type="text" id="pgi-${input.id}" class="prompt-input" data-input-id="${input.id}" placeholder="${input.placeholder}" />
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="prompt-gen-preview">
+          <div class="prompt-preview-label">📋 Prompt Gerado:</div>
+          <div class="prompt-preview-box" data-template="${escapeHtml(pg.template)}" data-stack="${escapeHtml(stackStr)}">
+            <code id="prompt-preview-code">${escapeHtml(pg.template.replace(/{{stack_recomendada}}/g, stackStr))}</code>
+          </div>
+          <button class="btn btn-primary prompt-copy-btn" style="width:100%;margin-top:12px;justify-content:center">
+            <i data-lucide="copy"></i> Copiar Prompt Completo
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   function initPromptGenerator() {
-    const promptInputs = document.querySelectorAll('.prompt-input');
-    const previewBox = document.querySelector('.prompt-preview-box');
+    const promptInputs = document.querySelectorAll('#tab-prompt .prompt-input');
+    const previewBox = document.querySelector('#tab-prompt .prompt-preview-box');
     
     if (!promptInputs.length || !previewBox) return;
+
+    // Remove old listeners by cloning
+    promptInputs.forEach(input => {
+      const clone = input.cloneNode(true);
+      input.parentNode.replaceChild(clone, input);
+    });
+
+    const freshInputs = document.querySelectorAll('#tab-prompt .prompt-input');
     
     function updatePromptPreview() {
       const template = previewBox.dataset.template;
+      const stackStr = previewBox.dataset.stack || '';
       let prompt = template;
       
-      promptInputs.forEach(input => {
+      freshInputs.forEach(input => {
         const inputId = input.dataset.inputId;
-        const value = input.value || '';
+        const value = input.value.trim() || `[${inputId}]`;
         const regex = new RegExp('{{\\s*' + inputId + '\\s*}}', 'g');
         prompt = prompt.replace(regex, value);
       });
       
-      const stackElement = document.querySelector('.result-stack-pills');
-      if (stackElement) {
-        const stackItems = Array.from(stackElement.querySelectorAll('.result-pill')).map(p => p.textContent).join(', ');
-        prompt = prompt.replace(/{{\s*stack_recomendada\s*}}/g, stackItems);
-      }
+      prompt = prompt.replace(/{{\s*stack_recomendada\s*}}/g, stackStr);
       
       const codeEl = document.getElementById('prompt-preview-code');
-      if (codeEl) {
-        codeEl.textContent = prompt;
-      }
+      if (codeEl) codeEl.textContent = prompt;
     }
     
-    promptInputs.forEach(input => {
+    freshInputs.forEach(input => {
       input.addEventListener('input', updatePromptPreview);
     });
     
     updatePromptPreview();
     
-    const copyBtn = document.querySelector('.prompt-copy-btn');
+    // Copy button
+    const copyBtn = document.querySelector('#tab-prompt .prompt-copy-btn');
     if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
+      const newBtn = copyBtn.cloneNode(true);
+      copyBtn.parentNode.replaceChild(newBtn, copyBtn);
+      newBtn.addEventListener('click', () => {
         const promptText = document.getElementById('prompt-preview-code').textContent;
         navigator.clipboard.writeText(promptText).then(() => {
-          showToast('Prompt copiado para a area de transferencia!', 'success');
+          showToast('\u2705 Prompt copiado! Cole no Cursor, ChatGPT ou Claude.', 'success');
         }).catch(() => {
-          showToast('Erro ao copiar. Tente novamente.', 'error');
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = promptText;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('\u2705 Prompt copiado!', 'success');
         });
       });
     }
