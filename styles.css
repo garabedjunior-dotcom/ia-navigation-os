@@ -718,6 +718,7 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 24px;
+  max-height: calc(85vh - 160px);
 }
 
 #wizard-progress {
@@ -822,7 +823,9 @@ body {
 #wizard-result {
   padding: 24px;
   overflow-y: auto;
-  max-height: calc(85vh - 80px);
+  max-height: calc(85vh - 160px);
+  display: flex;
+  flex-direction: column;
 }
 
 #wizard-result.hidden { display: none; }
