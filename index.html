@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Navigation OS — Mapa do Ecossistema de IA</title>
+  <meta name="description" content="Mapa mental interativo do ecossistema de ferramentas de IA para construir apps sem ser desenvolvedor." />
+
+  <!-- Cytoscape.js -->
+  <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+  <!-- Cytoscape layout extensions -->
+  <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
+  <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js"></script>
+  <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ HEADER ============ -->
+  <header id="app-header">
+    <div class="header-left">
+      <div class="logo">
+        <i data-lucide="brain-circuit"></i>
+        <span class="logo-text">IA Navigation <strong>OS</strong></span>
+      </div>
+      <span class="version-badge">v1.0</span>
+    </div>
+    <div class="header-center">
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" id="search-input" placeholder="Buscar: React, deploy, RAG, Supabase..." autocomplete="off" />
+        <div id="search-results" class="search-results hidden"></div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="btn-wizard" class="btn btn-primary">
+        <i data-lucide="wand-2"></i>
+        <span>Recomendar Stack</span>
+      </button>
+      <button id="btn-reset" class="btn btn-ghost" title="Resetar vista">
+        <i data-lucide="refresh-cw"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ BREADCRUMB ============ -->
+  <div id="breadcrumb-bar">
+    <i data-lucide="map-pin" class="breadcrumb-icon"></i>
+    <span class="breadcrumb-label">Você está em:</span>
+    <div id="breadcrumb-trail">
+      <span class="crumb active">Jornada</span>
+    </div>
+  </div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main id="app-main">
+    <!-- GRAPH AREA -->
+    <div id="graph-container">
+      <div id="cy"></div>
+      <!-- Graph controls -->
+      <div id="graph-controls">
+        <button id="btn-zoom-in" class="graph-btn" title="Zoom in">
+          <i data-lucide="zoom-in"></i>
+        </button>
+        <button id="btn-zoom-out" class="graph-btn" title="Zoom out">
+          <i data-lucide="zoom-out"></i>
+        </button>
+        <button id="btn-fit" class="graph-btn" title="Encaixar tudo">
+          <i data-lucide="maximize-2"></i>
+        </button>
+      </div>
+      <!-- Legend -->
+      <div id="graph-legend">
+        <div class="legend-title">Legenda</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span> Camada</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#0ea5e9"></span> Categoria</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span> Conceito</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Ferramenta</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Playbook</div>
+      </div>
+      <!-- Stats -->
+      <div id="graph-stats">
+        <span id="stat-nodes">0 nós</span> · <span id="stat-edges">0 conexões</span>
+      </div>
+    </div>
+
+    <!-- SIDE PANEL -->
+    <aside id="side-panel" class="closed">
+      <button id="btn-close-panel" class="panel-close" title="Fechar painel">
+        <i data-lucide="x"></i>
+      </button>
+
+      <!-- Card Details View -->
+      <div id="panel-card" class="panel-view">
+        <div id="card-type-badge" class="type-badge">TOOL</div>
+        <h2 id="card-title">Selecione um nó</h2>
+        <p id="card-summary" class="card-summary">Clique em um nó no grafo para ver detalhes.</p>
+
+        <div id="card-details" class="card-details"></div>
+
+        <div id="card-tags" class="card-tags"></div>
+
+        <div id="card-connections" class="card-connections">
+          <h3><i data-lucide="git-branch"></i> Conexões</h3>
+          <div id="connections-list"></div>
+        </div>
+
+        <div id="card-playbook" class="card-playbook hidden">
+          <h3><i data-lucide="book-open"></i> Playbook</h3>
+          <div id="playbook-content"></div>
+        </div>
+
+        <button id="btn-expand" class="btn btn-secondary btn-full">
+          <i data-lucide="git-fork"></i>
+          <span>Expandir próximos nós</span>
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ============ WIZARD MODAL ============ -->
+  <div id="wizard-overlay" class="overlay hidden">
+    <div id="wizard-modal" class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i data-lucide="wand-2"></i>
+          <h2>Wizard: Recomendar Stack</h2>
+        </div>
+        <button id="btn-close-wizard" class="modal-close">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Wizard Steps -->
+      <div id="wizard-body" class="modal-body">
+        <!-- Progress -->
+        <div id="wizard-progress">
+          <div id="wizard-progress-bar"></div>
+        </div>
+
+        <!-- Step Container -->
+        <div id="wizard-step-container"></div>
+      </div>
+
+      <!-- Wizard Footer -->
+      <div id="wizard-footer" class="modal-footer">
+        <button id="wizard-back" class="btn btn-ghost">
+          <i data-lucide="arrow-left"></i> Voltar
+        </button>
+        <div class="wizard-step-indicator">
+          <span id="wizard-step-num">1</span> / <span id="wizard-step-total">6</span>
+        </div>
+        <button id="wizard-next" class="btn btn-primary">
+          Próximo <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Wizard Result -->
+      <div id="wizard-result" class="hidden">
+        <div id="wizard-result-content"></div>
+        <div class="wizard-result-actions">
+          <button id="wizard-restart" class="btn btn-ghost">
+            <i data-lucide="refresh-cw"></i> Refazer
+          </button>
+          <button id="wizard-close-result" class="btn btn-primary">
+            <i data-lucide="check"></i> Fechar e Explorar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

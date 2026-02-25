@@ -1,0 +1,769 @@
+{
+  "version": "1.0",
+  "nodes": [
+    { "id": "L0", "type": "LAYER", "name": "Jornada", "summary_leigo": "Mapa do processo para transformar uma ideia em app.", "tags": ["root"], "level": 0, "details": {} },
+
+    { "id": "L1_IDEA", "type": "LAYER", "name": "Ideia & Produto", "summary_leigo": "Definir o que você vai construir e por quê.", "tags": ["product"], "level": 1, "details": {} },
+    { "id": "L1_DESIGN", "type": "LAYER", "name": "Design & UI/UX", "summary_leigo": "Desenhar telas e experiência sem confusão.", "tags": ["design"], "level": 1, "details": {} },
+    { "id": "L1_FRONT", "type": "LAYER", "name": "Frontend", "summary_leigo": "Parte visual e interativa que o usuário vê.", "tags": ["frontend"], "level": 1, "details": {} },
+    { "id": "L1_BACK", "type": "LAYER", "name": "Backend", "summary_leigo": "Regras de negócio, APIs e autenticação.", "tags": ["backend"], "level": 1, "details": {} },
+    { "id": "L1_DB", "type": "LAYER", "name": "Banco de Dados", "summary_leigo": "Onde os dados ficam salvos com segurança.", "tags": ["database"], "level": 1, "details": {} },
+    { "id": "L1_AI", "type": "LAYER", "name": "IA & Agentes", "summary_leigo": "Modelos, prompts, RAG e agentes de automação.", "tags": ["ai"], "level": 1, "details": {} },
+    { "id": "L1_AUTO", "type": "LAYER", "name": "Automação", "summary_leigo": "Conectar serviços e automatizar tarefas sem code pesado.", "tags": ["automation"], "level": 1, "details": {} },
+    { "id": "L1_DEPLOY", "type": "LAYER", "name": "Deploy & Infra", "summary_leigo": "Colocar no ar com domínio, SSL e variáveis.", "tags": ["deploy"], "level": 1, "details": {} },
+    { "id": "L1_SCALE", "type": "LAYER", "name": "Escala & Manutenção", "summary_leigo": "Monitorar, corrigir, crescer e não quebrar.", "tags": ["scale"], "level": 1, "details": {} },
+    { "id": "L1_MONETIZE", "type": "LAYER", "name": "Monetização", "summary_leigo": "Cobrar, assinar e receber pagamentos no app.", "tags": ["monetize"], "level": 1, "details": {} },
+
+    { "id": "C_IDEA_VALID", "type": "CATEGORY", "name": "Validação", "summary_leigo": "Testar se vale a pena antes de construir.", "tags": ["product"], "level": 2, "details": {} },
+    { "id": "C_IDEA_PRD", "type": "CATEGORY", "name": "PRD & Especificação", "summary_leigo": "Definir requisitos claros em linguagem simples.", "tags": ["product"], "level": 2, "details": {} },
+    { "id": "C_IDEA_RESEARCH", "type": "CATEGORY", "name": "Pesquisa de Mercado", "summary_leigo": "Entender concorrentes, público e oportunidades.", "tags": ["product"], "level": 2, "details": {} },
+
+    { "id": "C_DESIGN_WIREFRAME", "type": "CATEGORY", "name": "Wireframes & Fluxos", "summary_leigo": "Rascunho de telas e jornada do usuário.", "tags": ["design"], "level": 2, "details": {} },
+    { "id": "C_DESIGN_UIKIT", "type": "CATEGORY", "name": "UI Kits & Componentes", "summary_leigo": "Blocos prontos: botões, cards, inputs.", "tags": ["design"], "level": 2, "details": {} },
+    { "id": "C_DESIGN_PROTO", "type": "CATEGORY", "name": "Prototipagem", "summary_leigo": "Simular o app antes de construir de verdade.", "tags": ["design"], "level": 2, "details": {} },
+
+    { "id": "C_FRONT_BUILDERS", "type": "CATEGORY", "name": "AI Builders", "summary_leigo": "Ferramentas que geram app/telas rapidamente.", "tags": ["frontend"], "level": 2, "details": {} },
+    { "id": "C_FRONT_CONCEPTS", "type": "CATEGORY", "name": "Conceitos de Frontend", "summary_leigo": "O básico para entender o que está acontecendo.", "tags": ["frontend"], "level": 2, "details": {} },
+    { "id": "C_FRONT_FRAMEWORKS", "type": "CATEGORY", "name": "Frameworks Frontend", "summary_leigo": "Estruturas prontas para construir interfaces.", "tags": ["frontend"], "level": 2, "details": {} },
+
+    { "id": "C_BACK_AUTH", "type": "CATEGORY", "name": "Auth & Permissões", "summary_leigo": "Login, usuários e níveis de acesso.", "tags": ["backend"], "level": 2, "details": {} },
+    { "id": "C_BACK_APIS", "type": "CATEGORY", "name": "APIs & Regras", "summary_leigo": "Como dados entram/saem e regras funcionam.", "tags": ["backend"], "level": 2, "details": {} },
+    { "id": "C_BACK_PAYMENTS", "type": "CATEGORY", "name": "Pagamentos", "summary_leigo": "Processar cobranças, assinaturas e recorrência.", "tags": ["backend","monetize"], "level": 2, "details": {} },
+
+    { "id": "C_DB_BAAS", "type": "CATEGORY", "name": "BaaS (Database pronta)", "summary_leigo": "Banco + auth + storage sem infra complexa.", "tags": ["database"], "level": 2, "details": {} },
+    { "id": "C_DB_VECTOR", "type": "CATEGORY", "name": "Bancos Vetoriais", "summary_leigo": "Armazenar embeddings para busca semântica.", "tags": ["database","ai"], "level": 2, "details": {} },
+
+    { "id": "C_AI_RAG", "type": "CATEGORY", "name": "RAG (memória)", "summary_leigo": "Chat com base em documentos e dados.", "tags": ["ai"], "level": 2, "details": {} },
+    { "id": "C_AI_AGENTS", "type": "CATEGORY", "name": "Agentes", "summary_leigo": "IA que executa tarefas em etapas com ferramentas.", "tags": ["ai"], "level": 2, "details": {} },
+    { "id": "C_AI_LLMS", "type": "CATEGORY", "name": "LLMs & Modelos", "summary_leigo": "Os cérebros da IA: GPT, Claude, Gemini, etc.", "tags": ["ai"], "level": 2, "details": {} },
+    { "id": "C_AI_PROMPTS", "type": "CATEGORY", "name": "Prompt Engineering", "summary_leigo": "A arte de dar instruções claras para a IA.", "tags": ["ai"], "level": 2, "details": {} },
+
+    { "id": "C_AUTO_WORKFLOWS", "type": "CATEGORY", "name": "Workflows", "summary_leigo": "Automatizar: gatilho → ações → resultado.", "tags": ["automation"], "level": 2, "details": {} },
+    { "id": "C_AUTO_NOCODE", "type": "CATEGORY", "name": "No-Code Automation", "summary_leigo": "Automatizar sem escrever código.", "tags": ["automation"], "level": 2, "details": {} },
+
+    { "id": "C_DEPLOY_HOST", "type": "CATEGORY", "name": "Hospedagem", "summary_leigo": "Onde seu app roda.", "tags": ["deploy"], "level": 2, "details": {} },
+    { "id": "C_DEPLOY_DNS", "type": "CATEGORY", "name": "Domínio & DNS", "summary_leigo": "Apontar seu domínio para o app.", "tags": ["deploy"], "level": 2, "details": {} },
+    { "id": "C_DEPLOY_CI", "type": "CATEGORY", "name": "CI/CD & Pipelines", "summary_leigo": "Automatizar publicação e testes a cada mudança.", "tags": ["deploy"], "level": 2, "details": {} },
+
+    { "id": "C_SCALE_MONITOR", "type": "CATEGORY", "name": "Monitoramento", "summary_leigo": "Saber se o app está funcionando e performando.", "tags": ["scale"], "level": 2, "details": {} },
+    { "id": "C_SCALE_ANALYTICS", "type": "CATEGORY", "name": "Analytics & Métricas", "summary_leigo": "Medir uso, conversão e comportamento.", "tags": ["scale"], "level": 2, "details": {} },
+
+    { "id": "C_MONETIZE_STRIPE", "type": "CATEGORY", "name": "Stripe & Pagamentos", "summary_leigo": "Cobrar via cartão, PIX e assinaturas.", "tags": ["monetize"], "level": 2, "details": {} },
+
+    { "id": "K_REACT", "type": "CONCEPT", "name": "React", "summary_leigo": "Uma forma de montar telas com componentes reutilizáveis.", "tags": ["frontend","concept"], "level": 3,
+      "details": { "what_is": "Biblioteca para construir interfaces por componentes.", "why_matters": "Facilita manter e evoluir telas.", "common_confusion": "Você não precisa 'virar dev' para usar; precisa entender o básico para orientar a IA." } },
+    { "id": "K_TAILWIND", "type": "CONCEPT", "name": "Tailwind CSS", "summary_leigo": "Um jeito rápido de estilizar com classes prontas.", "tags": ["frontend","concept"], "level": 3,
+      "details": { "what_is": "Framework de CSS utilitário.", "why_matters": "Acelera UI consistente.", "common_confusion": "Parece 'código', mas é só rótulo de estilo." } },
+    { "id": "K_LUCIDE", "type": "CONCEPT", "name": "Lucide React", "summary_leigo": "Pacote de ícones prontos para apps React.", "tags": ["frontend","concept"], "level": 3,
+      "details": { "what_is": "Biblioteca de ícones.", "why_matters": "Deixa UI profissional sem desenhar ícones.", "common_confusion": "Não é obrigatório, só conveniência." } },
+    { "id": "K_API", "type": "CONCEPT", "name": "API", "summary_leigo": "Uma ponte para sistemas conversarem.", "tags": ["backend","concept"], "level": 3,
+      "details": { "what_is": "Endpoints para enviar/receber dados.", "why_matters": "Integrações e apps dependem disso.", "common_confusion": "API não é app; é o 'serviço' do app." } },
+    { "id": "K_RAG", "type": "CONCEPT", "name": "RAG", "summary_leigo": "Chat que responde baseado em seus documentos.", "tags": ["ai","concept"], "level": 3,
+      "details": { "what_is": "Busca trechos relevantes + modelo responde.", "why_matters": "Reduz alucinação e aumenta utilidade.", "common_confusion": "RAG não 'treina modelo'; só dá contexto." } },
+    { "id": "K_EMBEDDING", "type": "CONCEPT", "name": "Embeddings", "summary_leigo": "Transformar texto em números para busca inteligente.", "tags": ["ai","concept"], "level": 3,
+      "details": { "what_is": "Representação vetorial de texto/imagem.", "why_matters": "Base do RAG e busca semântica.", "common_confusion": "Não é 'tradução'; é representação matemática de significado." } },
+    { "id": "K_WEBHOOK", "type": "CONCEPT", "name": "Webhook", "summary_leigo": "Aviso automático quando algo acontece em outro sistema.", "tags": ["backend","concept","automation"], "level": 3,
+      "details": { "what_is": "Chamada HTTP disparada por evento.", "why_matters": "Conecta sistemas em tempo real.", "common_confusion": "Webhook é push (o sistema avisa); API é pull (você pergunta)." } },
+    { "id": "K_RLS", "type": "CONCEPT", "name": "Row Level Security (RLS)", "summary_leigo": "Regra no banco que controla quem vê o quê.", "tags": ["database","concept"], "level": 3,
+      "details": { "what_is": "Política de segurança por linha no PostgreSQL.", "why_matters": "Cada usuário só vê seus dados.", "common_confusion": "Não substitui auth; complementa." } },
+    { "id": "K_NEXTJS", "type": "CONCEPT", "name": "Next.js", "summary_leigo": "Framework React com rotas, SSR e API embutidos.", "tags": ["frontend","concept"], "level": 3,
+      "details": { "what_is": "Framework fullstack baseado em React.", "why_matters": "Unifica front e back em um projeto.", "common_confusion": "Não é 'outro React'; é React com superpoderes." } },
+    { "id": "K_SSR", "type": "CONCEPT", "name": "SSR / SSG", "summary_leigo": "Renderizar páginas no servidor para SEO e velocidade.", "tags": ["frontend","concept"], "level": 3,
+      "details": { "what_is": "Server-Side Rendering / Static Site Generation.", "why_matters": "Melhora SEO e performance.", "common_confusion": "SSR = a cada request; SSG = uma vez no build." } },
+    { "id": "K_ENV", "type": "CONCEPT", "name": "Variáveis de Ambiente", "summary_leigo": "Senhas e configs que não ficam no código.", "tags": ["deploy","concept"], "level": 3,
+      "details": { "what_is": "Valores configuráveis fora do código-fonte.", "why_matters": "Segurança e flexibilidade entre ambientes.", "common_confusion": "Nunca commitar .env no Git." } },
+    { "id": "K_CORS", "type": "CONCEPT", "name": "CORS", "summary_leigo": "Regra de segurança que controla quem acessa sua API.", "tags": ["backend","concept"], "level": 3,
+      "details": { "what_is": "Cross-Origin Resource Sharing.", "why_matters": "Sem configurar, frontend não fala com backend.", "common_confusion": "Erro de CORS não é bug; é proteção." } },
+    { "id": "K_JWT", "type": "CONCEPT", "name": "JWT Token", "summary_leigo": "Crachá digital que prova que o usuário está logado.", "tags": ["backend","concept"], "level": 3,
+      "details": { "what_is": "JSON Web Token para autenticação.", "why_matters": "Permite sessões sem estado no servidor.", "common_confusion": "JWT não é criptografia; é assinatura." } },
+
+    { "id": "T_CLAUDE", "type": "TOOL", "name": "Claude", "summary_leigo": "LLM forte para planejamento e código.", "tags": ["ai"], "level": 3,
+      "details": { "free_tier": "varia", "learning_curve": 2, "when_use": ["PRD", "arquitetura", "refatorar código"], "when_not": ["deploy direto sem pipeline"], "lock_in": "baixo", "best_combos": ["Claude + Supabase + Vercel"] } },
+    { "id": "T_CHATGPT", "type": "TOOL", "name": "ChatGPT", "summary_leigo": "LLM geral para estratégia, produto e debugging.", "tags": ["ai"], "level": 3,
+      "details": { "free_tier": "varia", "learning_curve": 2, "when_use": ["ideação", "prompts", "debug"], "when_not": ["rodar infra sozinho"], "lock_in": "baixo", "best_combos": ["ChatGPT + Lovable + Supabase"] } },
+    { "id": "T_GEMINI", "type": "TOOL", "name": "Gemini", "summary_leigo": "LLM do Google com contexto longo e multimodal.", "tags": ["ai"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["análise de docs longos", "multimodal", "integração Google"], "when_not": ["quando precisa de tool use avançado"], "lock_in": "baixo", "best_combos": ["Gemini + Google Sheets + Apps Script"] } },
+
+    { "id": "T_SUPABASE", "type": "TOOL", "name": "Supabase", "summary_leigo": "Banco Postgres + Auth + Storage pronto.", "tags": ["database","backend"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 3, "when_use": ["SaaS", "CRM", "auth + db"], "when_not": ["workloads muito específicos"], "lock_in": "médio", "best_combos": ["Supabase + Vercel", "Supabase + n8n"] } },
+    { "id": "T_FIREBASE", "type": "TOOL", "name": "Firebase", "summary_leigo": "Backend pronto do Google com auth e banco.", "tags": ["database","backend"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 3, "when_use": ["apps rápidos", "mobile"], "when_not": ["queries relacionais complexas"], "lock_in": "médio/alto", "best_combos": ["Firebase + app mobile"] } },
+    { "id": "T_NEON", "type": "TOOL", "name": "Neon", "summary_leigo": "Postgres serverless com branching.", "tags": ["database"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["Postgres sem gerenciar servidor", "branching para dev"], "when_not": ["precisa de auth embutido"], "lock_in": "baixo", "best_combos": ["Neon + Drizzle + Next.js"] } },
+
+    { "id": "T_N8N", "type": "TOOL", "name": "n8n", "summary_leigo": "Automação avançada por workflows.", "tags": ["automation"], "level": 3,
+      "details": { "free_tier": "sim (self-host)", "learning_curve": 3, "when_use": ["integrações", "rotinas", "bots"], "when_not": ["lógica de negócio core complexa"], "lock_in": "baixo", "best_combos": ["n8n + Supabase", "n8n + WhatsApp API"] } },
+    { "id": "T_MAKE", "type": "TOOL", "name": "Make (Integromat)", "summary_leigo": "Automação visual com centenas de conectores.", "tags": ["automation"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 2, "when_use": ["automações simples", "conectar SaaS"], "when_not": ["lógica complexa", "alto volume"], "lock_in": "médio", "best_combos": ["Make + Google Sheets + Slack"] } },
+    { "id": "T_ZAPIER", "type": "TOOL", "name": "Zapier", "summary_leigo": "Automação no-code mais popular do mercado.", "tags": ["automation"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 1, "when_use": ["automações simples", "não-técnicos"], "when_not": ["alto volume", "lógica complexa"], "lock_in": "médio", "best_combos": ["Zapier + CRM + Email"] } },
+
+    { "id": "T_VERCEL", "type": "TOOL", "name": "Vercel", "summary_leigo": "Hospedagem simples para apps web.", "tags": ["deploy"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["Next.js", "frontends"], "when_not": ["apps monolíticos pesados"], "lock_in": "baixo", "best_combos": ["Vercel + Supabase"] } },
+    { "id": "T_NETLIFY", "type": "TOOL", "name": "Netlify", "summary_leigo": "Hospedagem com deploy automático e forms.", "tags": ["deploy"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["sites estáticos", "JAMstack"], "when_not": ["apps server-heavy"], "lock_in": "baixo", "best_combos": ["Netlify + Supabase"] } },
+    { "id": "T_RAILWAY", "type": "TOOL", "name": "Railway", "summary_leigo": "Deploy de backend/banco com um clique.", "tags": ["deploy"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 2, "when_use": ["backend Node/Python", "bancos", "n8n self-host"], "when_not": ["frontends estáticos"], "lock_in": "baixo", "best_combos": ["Railway + n8n", "Railway + Postgres"] } },
+
+    { "id": "T_LOVABLE", "type": "TOOL", "name": "Lovable", "summary_leigo": "Gera app completo com IA a partir de prompt.", "tags": ["frontend"], "level": 3,
+      "details": { "free_tier": "varia", "learning_curve": 2, "when_use": ["MVP", "CRUD", "dashboards"], "when_not": ["controle fino extremo"], "lock_in": "médio", "best_combos": ["Lovable + Supabase + Vercel"] } },
+    { "id": "T_BOLT", "type": "TOOL", "name": "Bolt.new", "summary_leigo": "Builder de app com IA no navegador.", "tags": ["frontend"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 2, "when_use": ["protótipos rápidos", "MVPs"], "when_not": ["apps complexos de produção"], "lock_in": "médio", "best_combos": ["Bolt + Supabase"] } },
+    { "id": "T_CURSOR", "type": "TOOL", "name": "Cursor", "summary_leigo": "Editor de código com IA integrada.", "tags": ["frontend","backend"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 3, "when_use": ["codificar com assistência IA", "refatorar", "debug"], "when_not": ["quem não quer ver código"], "lock_in": "baixo", "best_combos": ["Cursor + Claude + Next.js"] } },
+    { "id": "T_V0", "type": "TOOL", "name": "v0.dev", "summary_leigo": "Gera componentes UI com IA da Vercel.", "tags": ["frontend","design"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 1, "when_use": ["gerar componentes React", "inspiração de UI"], "when_not": ["apps completos"], "lock_in": "baixo", "best_combos": ["v0 + Next.js + Vercel"] } },
+
+    { "id": "T_FIGMA", "type": "TOOL", "name": "Figma", "summary_leigo": "Ferramenta de design colaborativo para telas.", "tags": ["design"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 3, "when_use": ["wireframes", "protótipos", "design system"], "when_not": ["quem quer pular direto pro código"], "lock_in": "baixo", "best_combos": ["Figma + v0 + React"] } },
+    { "id": "T_WHIMSICAL", "type": "TOOL", "name": "Whimsical", "summary_leigo": "Fluxogramas e wireframes rápidos.", "tags": ["design","product"], "level": 3,
+      "details": { "free_tier": "sim (limitado)", "learning_curve": 1, "when_use": ["fluxos de usuário", "wireframes rápidos"], "when_not": ["design de alta fidelidade"], "lock_in": "baixo", "best_combos": ["Whimsical + Figma"] } },
+
+    { "id": "T_STRIPE", "type": "TOOL", "name": "Stripe", "summary_leigo": "Plataforma de pagamentos para SaaS.", "tags": ["monetize","backend"], "level": 3,
+      "details": { "free_tier": "paga por transação", "learning_curve": 3, "when_use": ["assinaturas", "pagamentos internacionais", "SaaS"], "when_not": ["só PIX Brasil"], "lock_in": "médio", "best_combos": ["Stripe + Next.js + Supabase"] } },
+    { "id": "T_ASAAS", "type": "TOOL", "name": "Asaas", "summary_leigo": "Pagamentos brasileiros: PIX, boleto, cartão.", "tags": ["monetize","backend"], "level": 3,
+      "details": { "free_tier": "paga por transação", "learning_curve": 2, "when_use": ["cobranças Brasil", "PIX", "boleto"], "when_not": ["pagamentos internacionais"], "lock_in": "médio", "best_combos": ["Asaas + n8n + Supabase"] } },
+
+    { "id": "T_PINECONE", "type": "TOOL", "name": "Pinecone", "summary_leigo": "Banco vetorial gerenciado para RAG.", "tags": ["ai","database"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 3, "when_use": ["RAG em escala", "busca semântica"], "when_not": ["poucos documentos"], "lock_in": "médio", "best_combos": ["Pinecone + OpenAI + Next.js"] } },
+    { "id": "T_PGVECTOR", "type": "TOOL", "name": "pgvector (Supabase)", "summary_leigo": "Extensão vetorial dentro do Postgres.", "tags": ["ai","database"], "level": 3,
+      "details": { "free_tier": "sim (com Supabase)", "learning_curve": 3, "when_use": ["RAG simples", "já usa Supabase"], "when_not": ["milhões de vetores"], "lock_in": "baixo", "best_combos": ["pgvector + Supabase + LLM"] } },
+
+    { "id": "T_LANGFLOW", "type": "TOOL", "name": "Langflow", "summary_leigo": "Builder visual de pipelines de IA.", "tags": ["ai"], "level": 3,
+      "details": { "free_tier": "sim (open source)", "learning_curve": 3, "when_use": ["RAG visual", "prototipar agentes"], "when_not": ["produção de alto volume"], "lock_in": "baixo", "best_combos": ["Langflow + Supabase + LLM"] } },
+    { "id": "T_FLOWISE", "type": "TOOL", "name": "Flowise", "summary_leigo": "Builder no-code de chatbots com LLM.", "tags": ["ai"], "level": 3,
+      "details": { "free_tier": "sim (open source)", "learning_curve": 2, "when_use": ["chatbots rápidos", "RAG visual"], "when_not": ["lógica de agente complexa"], "lock_in": "baixo", "best_combos": ["Flowise + Railway + Supabase"] } },
+
+    { "id": "T_GITHUB", "type": "TOOL", "name": "GitHub", "summary_leigo": "Onde o código fica salvo e versionado.", "tags": ["deploy","scale"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 3, "when_use": ["versionamento", "colaboração", "CI/CD"], "when_not": ["nunca; sempre use"], "lock_in": "baixo", "best_combos": ["GitHub + Vercel", "GitHub + Railway"] } },
+    { "id": "T_SENTRY", "type": "TOOL", "name": "Sentry", "summary_leigo": "Monitora erros do app em tempo real.", "tags": ["scale"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["monitorar erros em produção"], "when_not": ["app ainda em dev local"], "lock_in": "baixo", "best_combos": ["Sentry + Vercel + Next.js"] } },
+    { "id": "T_POSTHOG", "type": "TOOL", "name": "PostHog", "summary_leigo": "Analytics de produto open source.", "tags": ["scale"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["entender uso do produto", "funis", "feature flags"], "when_not": ["app sem usuários ainda"], "lock_in": "baixo", "best_combos": ["PostHog + Vercel + Next.js"] } },
+    { "id": "T_GA", "type": "TOOL", "name": "Google Analytics", "summary_leigo": "Métricas de tráfego e comportamento.", "tags": ["scale"], "level": 3,
+      "details": { "free_tier": "sim", "learning_curve": 2, "when_use": ["landing pages", "tráfego", "conversão"], "when_not": ["métricas de produto profundas"], "lock_in": "baixo", "best_combos": ["GA + Tag Manager + Landing Page"] } },
+
+    { "id": "T_MANUS", "type": "TOOL", "name": "Manus AI", "summary_leigo": "Agente de IA que executa tarefas complexas autonomamente.", "tags": ["ai","automation"], "level": 3,
+      "details": { "free_tier": "varia", "learning_curve": 1, "when_use": ["pesquisa", "construir apps", "automação complexa"], "when_not": ["tarefas triviais"], "lock_in": "baixo", "best_combos": ["Manus + qualquer stack"] } },
+
+    { "id": "P_LP_LEADS", "type": "PLAYBOOK", "name": "Landing Page + Leads", "summary_leigo": "Criar página que capta leads e envia para planilha/CRM.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_CRUD_AUTH", "type": "PLAYBOOK", "name": "CRUD + Login", "summary_leigo": "App com cadastro, login e telas CRUD.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_RBAC", "type": "PLAYBOOK", "name": "CRUD + Níveis de acesso (RBAC)", "summary_leigo": "Permissões por perfil: admin/operador/leitura.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_RAG_DOCS", "type": "PLAYBOOK", "name": "Chat com RAG de documentos", "summary_leigo": "Responder com base em PDFs/Docs com segurança.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_BOT_WA", "type": "PLAYBOOK", "name": "Bot WhatsApp + Banco", "summary_leigo": "Receber mensagens, salvar dados e responder automaticamente.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_DEPLOY_DOMAIN", "type": "PLAYBOOK", "name": "Deploy + Domínio", "summary_leigo": "Publicar app e configurar domínio/SSL.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_SAAS_MVP", "type": "PLAYBOOK", "name": "SaaS MVP Completo", "summary_leigo": "Do zero ao MVP funcional com login, CRUD e deploy.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_PAYMENTS", "type": "PLAYBOOK", "name": "Integrar Pagamentos", "summary_leigo": "Adicionar cobrança recorrente ou avulsa ao app.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_AGENT_BUILDER", "type": "PLAYBOOK", "name": "Construir Agente de IA", "summary_leigo": "Criar agente que executa tarefas com ferramentas.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_CRM_SIMPLE", "type": "PLAYBOOK", "name": "CRM Simples", "summary_leigo": "Gerenciar contatos, deals e follow-ups.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_DASHBOARD", "type": "PLAYBOOK", "name": "Dashboard Analítico", "summary_leigo": "Painel com KPIs, gráficos e filtros.", "tags": ["playbook"], "level": 4, "details": {} },
+    { "id": "P_EMAIL_AUTO", "type": "PLAYBOOK", "name": "Automação de Email", "summary_leigo": "Enviar emails automáticos baseados em eventos.", "tags": ["playbook"], "level": 4, "details": {} }
+  ],
+  "edges": [
+    { "from": "L0", "to": "L1_IDEA", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_DESIGN", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_FRONT", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_BACK", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_DB", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_AI", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_AUTO", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_DEPLOY", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_SCALE", "relation": "BELONGS_TO" },
+    { "from": "L0", "to": "L1_MONETIZE", "relation": "BELONGS_TO" },
+
+    { "from": "L1_IDEA", "to": "C_IDEA_VALID", "relation": "BELONGS_TO" },
+    { "from": "L1_IDEA", "to": "C_IDEA_PRD", "relation": "BELONGS_TO" },
+    { "from": "L1_IDEA", "to": "C_IDEA_RESEARCH", "relation": "BELONGS_TO" },
+
+    { "from": "L1_DESIGN", "to": "C_DESIGN_WIREFRAME", "relation": "BELONGS_TO" },
+    { "from": "L1_DESIGN", "to": "C_DESIGN_UIKIT", "relation": "BELONGS_TO" },
+    { "from": "L1_DESIGN", "to": "C_DESIGN_PROTO", "relation": "BELONGS_TO" },
+
+    { "from": "L1_FRONT", "to": "C_FRONT_BUILDERS", "relation": "BELONGS_TO" },
+    { "from": "L1_FRONT", "to": "C_FRONT_CONCEPTS", "relation": "BELONGS_TO" },
+    { "from": "L1_FRONT", "to": "C_FRONT_FRAMEWORKS", "relation": "BELONGS_TO" },
+
+    { "from": "C_FRONT_CONCEPTS", "to": "K_REACT", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_CONCEPTS", "to": "K_TAILWIND", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_CONCEPTS", "to": "K_LUCIDE", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_CONCEPTS", "to": "K_SSR", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_FRAMEWORKS", "to": "K_NEXTJS", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_FRAMEWORKS", "to": "K_REACT", "relation": "RECOMMENDED_WITH" },
+
+    { "from": "L1_BACK", "to": "C_BACK_AUTH", "relation": "BELONGS_TO" },
+    { "from": "L1_BACK", "to": "C_BACK_APIS", "relation": "BELONGS_TO" },
+    { "from": "L1_BACK", "to": "C_BACK_PAYMENTS", "relation": "BELONGS_TO" },
+    { "from": "C_BACK_APIS", "to": "K_API", "relation": "BELONGS_TO" },
+    { "from": "C_BACK_APIS", "to": "K_CORS", "relation": "BELONGS_TO" },
+    { "from": "C_BACK_APIS", "to": "K_WEBHOOK", "relation": "BELONGS_TO" },
+    { "from": "C_BACK_AUTH", "to": "K_JWT", "relation": "BELONGS_TO" },
+    { "from": "C_BACK_AUTH", "to": "K_RLS", "relation": "RECOMMENDED_WITH" },
+
+    { "from": "L1_AI", "to": "C_AI_RAG", "relation": "BELONGS_TO" },
+    { "from": "L1_AI", "to": "C_AI_AGENTS", "relation": "BELONGS_TO" },
+    { "from": "L1_AI", "to": "C_AI_LLMS", "relation": "BELONGS_TO" },
+    { "from": "L1_AI", "to": "C_AI_PROMPTS", "relation": "BELONGS_TO" },
+    { "from": "C_AI_RAG", "to": "K_RAG", "relation": "BELONGS_TO" },
+    { "from": "C_AI_RAG", "to": "K_EMBEDDING", "relation": "BELONGS_TO" },
+    { "from": "C_AI_LLMS", "to": "T_CLAUDE", "relation": "BELONGS_TO" },
+    { "from": "C_AI_LLMS", "to": "T_CHATGPT", "relation": "BELONGS_TO" },
+    { "from": "C_AI_LLMS", "to": "T_GEMINI", "relation": "BELONGS_TO" },
+    { "from": "C_AI_AGENTS", "to": "T_CLAUDE", "relation": "RECOMMENDED_WITH" },
+    { "from": "C_AI_AGENTS", "to": "T_CHATGPT", "relation": "RECOMMENDED_WITH" },
+    { "from": "C_AI_AGENTS", "to": "T_MANUS", "relation": "RECOMMENDED_WITH" },
+    { "from": "C_AI_AGENTS", "to": "T_LANGFLOW", "relation": "BELONGS_TO" },
+    { "from": "C_AI_AGENTS", "to": "T_FLOWISE", "relation": "BELONGS_TO" },
+
+    { "from": "L1_DB", "to": "C_DB_BAAS", "relation": "BELONGS_TO" },
+    { "from": "L1_DB", "to": "C_DB_VECTOR", "relation": "BELONGS_TO" },
+    { "from": "C_DB_BAAS", "to": "T_SUPABASE", "relation": "BELONGS_TO" },
+    { "from": "C_DB_BAAS", "to": "T_FIREBASE", "relation": "BELONGS_TO" },
+    { "from": "C_DB_BAAS", "to": "T_NEON", "relation": "BELONGS_TO" },
+    { "from": "C_DB_VECTOR", "to": "T_PINECONE", "relation": "BELONGS_TO" },
+    { "from": "C_DB_VECTOR", "to": "T_PGVECTOR", "relation": "BELONGS_TO" },
+
+    { "from": "L1_AUTO", "to": "C_AUTO_WORKFLOWS", "relation": "BELONGS_TO" },
+    { "from": "L1_AUTO", "to": "C_AUTO_NOCODE", "relation": "BELONGS_TO" },
+    { "from": "C_AUTO_WORKFLOWS", "to": "T_N8N", "relation": "BELONGS_TO" },
+    { "from": "C_AUTO_NOCODE", "to": "T_MAKE", "relation": "BELONGS_TO" },
+    { "from": "C_AUTO_NOCODE", "to": "T_ZAPIER", "relation": "BELONGS_TO" },
+
+    { "from": "L1_DEPLOY", "to": "C_DEPLOY_HOST", "relation": "BELONGS_TO" },
+    { "from": "L1_DEPLOY", "to": "C_DEPLOY_DNS", "relation": "BELONGS_TO" },
+    { "from": "L1_DEPLOY", "to": "C_DEPLOY_CI", "relation": "BELONGS_TO" },
+    { "from": "C_DEPLOY_HOST", "to": "T_VERCEL", "relation": "BELONGS_TO" },
+    { "from": "C_DEPLOY_HOST", "to": "T_NETLIFY", "relation": "BELONGS_TO" },
+    { "from": "C_DEPLOY_HOST", "to": "T_RAILWAY", "relation": "BELONGS_TO" },
+    { "from": "C_DEPLOY_CI", "to": "T_GITHUB", "relation": "BELONGS_TO" },
+    { "from": "C_DEPLOY_DNS", "to": "K_ENV", "relation": "RECOMMENDED_WITH" },
+
+    { "from": "L1_SCALE", "to": "C_SCALE_MONITOR", "relation": "BELONGS_TO" },
+    { "from": "L1_SCALE", "to": "C_SCALE_ANALYTICS", "relation": "BELONGS_TO" },
+    { "from": "C_SCALE_MONITOR", "to": "T_SENTRY", "relation": "BELONGS_TO" },
+    { "from": "C_SCALE_ANALYTICS", "to": "T_POSTHOG", "relation": "BELONGS_TO" },
+    { "from": "C_SCALE_ANALYTICS", "to": "T_GA", "relation": "BELONGS_TO" },
+
+    { "from": "L1_MONETIZE", "to": "C_MONETIZE_STRIPE", "relation": "BELONGS_TO" },
+    { "from": "C_MONETIZE_STRIPE", "to": "T_STRIPE", "relation": "BELONGS_TO" },
+    { "from": "C_MONETIZE_STRIPE", "to": "T_ASAAS", "relation": "BELONGS_TO" },
+
+    { "from": "C_FRONT_BUILDERS", "to": "T_LOVABLE", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_BUILDERS", "to": "T_BOLT", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_BUILDERS", "to": "T_CURSOR", "relation": "BELONGS_TO" },
+    { "from": "C_FRONT_BUILDERS", "to": "T_V0", "relation": "BELONGS_TO" },
+
+    { "from": "C_DESIGN_WIREFRAME", "to": "T_FIGMA", "relation": "BELONGS_TO" },
+    { "from": "C_DESIGN_WIREFRAME", "to": "T_WHIMSICAL", "relation": "BELONGS_TO" },
+    { "from": "C_DESIGN_PROTO", "to": "T_FIGMA", "relation": "RECOMMENDED_WITH" },
+
+    { "from": "P_LP_LEADS", "to": "T_VERCEL", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_LP_LEADS", "to": "T_LOVABLE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_CRUD_AUTH", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_CRUD_AUTH", "to": "T_LOVABLE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_RBAC", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_RBAC", "to": "K_RLS", "relation": "REQUIRES" },
+    { "from": "P_RAG_DOCS", "to": "K_RAG", "relation": "REQUIRES" },
+    { "from": "P_RAG_DOCS", "to": "T_PGVECTOR", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_BOT_WA", "to": "T_N8N", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_BOT_WA", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_DEPLOY_DOMAIN", "to": "T_VERCEL", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_DEPLOY_DOMAIN", "to": "T_GITHUB", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_SAAS_MVP", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_SAAS_MVP", "to": "T_LOVABLE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_SAAS_MVP", "to": "T_VERCEL", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_PAYMENTS", "to": "T_STRIPE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_PAYMENTS", "to": "T_ASAAS", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_AGENT_BUILDER", "to": "T_LANGFLOW", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_AGENT_BUILDER", "to": "T_CLAUDE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_CRM_SIMPLE", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_CRM_SIMPLE", "to": "T_N8N", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_DASHBOARD", "to": "T_SUPABASE", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_DASHBOARD", "to": "T_VERCEL", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_EMAIL_AUTO", "to": "T_N8N", "relation": "RECOMMENDED_WITH" },
+    { "from": "P_EMAIL_AUTO", "to": "T_MAKE", "relation": "RECOMMENDED_WITH" },
+
+    { "from": "T_SUPABASE", "to": "K_RLS", "relation": "USES" },
+    { "from": "T_VERCEL", "to": "K_ENV", "relation": "USES" },
+    { "from": "K_NEXTJS", "to": "K_SSR", "relation": "USES" },
+    { "from": "K_NEXTJS", "to": "K_REACT", "relation": "USES" },
+    { "from": "T_LOVABLE", "to": "K_REACT", "relation": "USES" },
+    { "from": "T_LOVABLE", "to": "K_TAILWIND", "relation": "USES" }
+  ],
+  "playbooks": [
+    {
+      "id": "P_LP_LEADS",
+      "goal": "Landing page + formulário + captação de leads",
+      "prerequisites": ["Definir oferta e CTA", "Ter um destino do lead (planilha/CRM)"],
+      "steps": [
+        "Criar wireframe simples (Hero, Benefícios, Prova, CTA, FAQ)",
+        "Escolher builder ou template",
+        "Implementar formulário (nome, email, WhatsApp opcional)",
+        "Enviar lead para Supabase/Sheet/CRM",
+        "Adicionar página de obrigado + evento de conversão",
+        "Publicar na Vercel/Netlify",
+        "Testar em mobile e desktop"
+      ],
+      "pitfalls": ["Formulário sem validação", "Sem página de obrigado", "Sem rastrear conversão"],
+      "done_definition": "Lead chega no destino e você consegue provar a conversão.",
+      "stack_variants": {
+        "rapida": ["Builder", "Google Sheets", "Vercel"],
+        "robusta": ["Next.js", "Supabase", "Vercel"]
+      },
+      "prompts": [
+        "Crie uma landing page premium com CTA claro e formulário de lead.",
+        "Gere copy com foco em conversão e prova."
+      ]
+    },
+    {
+      "id": "P_CRUD_AUTH",
+      "goal": "CRUD + login",
+      "prerequisites": ["Entidades (ex: Clientes, Produtos)", "Regras mínimas de acesso"],
+      "steps": [
+        "Definir tabelas principais",
+        "Configurar auth",
+        "Criar telas: lista, criar, editar, excluir",
+        "Validar permissões básicas",
+        "Logs simples de ações",
+        "Deploy"
+      ],
+      "pitfalls": ["Sem controle de acesso", "Sem validações", "Sem logs"],
+      "done_definition": "Usuário loga e consegue operar CRUD com segurança.",
+      "stack_variants": {
+        "rapida": ["Builder", "Supabase", "Vercel"],
+        "robusta": ["Next.js", "Supabase", "Vercel"]
+      },
+      "prompts": ["Crie CRUD completo com login e rotas protegidas."]
+    },
+    {
+      "id": "P_RBAC",
+      "goal": "CRUD + níveis de acesso",
+      "prerequisites": ["Papéis (admin/operador/leitura)", "Mapa de permissões por ação"],
+      "steps": [
+        "Criar tabela roles e permissões",
+        "Aplicar guardas nas telas e APIs",
+        "Testar: usuário sem permissão não vê ações",
+        "Criar painel admin para gerenciar papéis"
+      ],
+      "pitfalls": ["RBAC só no frontend", "Permissões inconsistentes"],
+      "done_definition": "Permissões funcionam no frontend e backend.",
+      "stack_variants": {
+        "rapida": ["Supabase Auth + RLS", "Builder", "Vercel"],
+        "robusta": ["Next.js", "Supabase RLS", "Vercel"]
+      },
+      "prompts": ["Implemente RBAC com 3 perfis e restrinja ações por perfil."]
+    },
+    {
+      "id": "P_RAG_DOCS",
+      "goal": "Chat com RAG de documentos",
+      "prerequisites": ["Coleção de PDFs/textos", "Política de privacidade básica"],
+      "steps": [
+        "Ingestão: extrair texto e chunking",
+        "Embeddings e armazenamento vetorial",
+        "Busca top-k por similaridade",
+        "Resposta do LLM citando trechos (internamente)",
+        "Tela de upload + status",
+        "Testes com perguntas reais"
+      ],
+      "pitfalls": ["Chunks grandes demais", "Sem filtros por documento", "Sem avaliação"],
+      "done_definition": "Perguntas respondidas com base nos docs com consistência.",
+      "stack_variants": {
+        "rapida": ["Supabase pgvector", "LLM", "UI simples"],
+        "robusta": ["Supabase pgvector", "Avaliação", "Controle de acesso por doc"]
+      },
+      "prompts": ["Crie um chat RAG com upload de PDF e busca vetorial."]
+    },
+    {
+      "id": "P_BOT_WA",
+      "goal": "Bot WhatsApp + banco",
+      "prerequisites": ["Provedor WhatsApp API", "Eventos webhook"],
+      "steps": [
+        "Configurar webhook de mensagens",
+        "Normalizar e salvar no banco",
+        "Regras de resposta (intents básicos)",
+        "Integração com n8n para fluxos",
+        "Logs e fallback humano"
+      ],
+      "pitfalls": ["Sem logs", "Sem limite de mensagens", "Sem fallback"],
+      "done_definition": "Mensagem entra, salva, responde e você audita o histórico.",
+      "stack_variants": {
+        "rapida": ["n8n", "Supabase", "WhatsApp API"],
+        "robusta": ["API própria", "Fila", "Supabase", "Observabilidade"]
+      },
+      "prompts": ["Implemente fluxo WhatsApp webhook → salvar → responder → logar."]
+    },
+    {
+      "id": "P_DEPLOY_DOMAIN",
+      "goal": "Deploy + domínio",
+      "prerequisites": ["Conta de deploy", "Domínio comprado"],
+      "steps": [
+        "Configurar variáveis de ambiente",
+        "Deploy na Vercel",
+        "Apontar DNS (A/CNAME)",
+        "Habilitar SSL",
+        "Testar rotas principais"
+      ],
+      "pitfalls": ["Variáveis faltando", "DNS errado", "CORS em integrações"],
+      "done_definition": "App acessível com domínio e SSL.",
+      "stack_variants": {
+        "rapida": ["Vercel + domínio"],
+        "robusta": ["Vercel + logs + monitoramento"]
+      },
+      "prompts": ["Crie checklist de deploy com DNS e variáveis."]
+    },
+    {
+      "id": "P_SAAS_MVP",
+      "goal": "SaaS MVP funcional do zero",
+      "prerequisites": ["PRD definido", "Entidades e fluxos mapeados", "Conta Supabase + Vercel"],
+      "steps": [
+        "Criar projeto com Builder ou Next.js",
+        "Configurar Supabase: tabelas, auth, RLS",
+        "Implementar telas: login, dashboard, CRUD principal",
+        "Adicionar validações e feedback visual",
+        "Integrar pagamento (Stripe/Asaas) se necessário",
+        "Deploy na Vercel com domínio",
+        "Testar fluxo completo com 3 usuários reais",
+        "Coletar feedback e iterar"
+      ],
+      "pitfalls": ["Escopo muito grande no MVP", "Sem validação com usuários reais", "Sem métricas"],
+      "done_definition": "Usuário real completa o fluxo principal e paga (se aplicável).",
+      "stack_variants": {
+        "rapida": ["Lovable", "Supabase", "Vercel"],
+        "robusta": ["Next.js", "Supabase", "Stripe", "Vercel", "Sentry"]
+      },
+      "prompts": [
+        "Crie um SaaS MVP com login, dashboard e CRUD para [domínio].",
+        "Configure Supabase com auth, tabelas e RLS para multi-tenant."
+      ]
+    },
+    {
+      "id": "P_PAYMENTS",
+      "goal": "Integrar pagamentos recorrentes ou avulsos",
+      "prerequisites": ["Conta Stripe ou Asaas", "Produtos/preços definidos", "Auth funcionando"],
+      "steps": [
+        "Criar produtos e preços no Stripe/Asaas",
+        "Implementar checkout (Stripe Checkout ou formulário)",
+        "Configurar webhooks de pagamento",
+        "Atualizar status do usuário no banco",
+        "Implementar portal do cliente (gerenciar assinatura)",
+        "Testar ciclo completo: assinar → cobrar → cancelar"
+      ],
+      "pitfalls": ["Webhook não validado", "Status desatualizado", "Sem tratamento de falha"],
+      "done_definition": "Usuário assina, é cobrado e pode gerenciar assinatura.",
+      "stack_variants": {
+        "rapida": ["Stripe Checkout", "Supabase", "Vercel"],
+        "robusta": ["Stripe API completa", "Webhooks", "Supabase", "Fila"]
+      },
+      "prompts": ["Integre Stripe Checkout com webhooks e atualize status no Supabase."]
+    },
+    {
+      "id": "P_AGENT_BUILDER",
+      "goal": "Construir agente de IA com ferramentas",
+      "prerequisites": ["Caso de uso definido", "Ferramentas/APIs que o agente usará", "LLM escolhido"],
+      "steps": [
+        "Definir persona e objetivo do agente",
+        "Mapear ferramentas disponíveis (APIs, buscas, cálculos)",
+        "Escolher framework: Langflow, Flowise ou código",
+        "Implementar loop de agente (pensar → agir → observar)",
+        "Adicionar memória (curta e/ou longa prazo)",
+        "Testar com cenários reais e edge cases",
+        "Deploy e monitoramento"
+      ],
+      "pitfalls": ["Agente sem limites (loops infinitos)", "Sem fallback humano", "Ferramentas mal documentadas"],
+      "done_definition": "Agente resolve o caso de uso com consistência e tem fallback.",
+      "stack_variants": {
+        "rapida": ["Flowise", "LLM", "Railway"],
+        "robusta": ["Langflow/código", "Supabase", "Observabilidade", "Vercel"]
+      },
+      "prompts": ["Crie um agente que [objetivo] usando [ferramentas] com fallback humano."]
+    },
+    {
+      "id": "P_CRM_SIMPLE",
+      "goal": "CRM simples para gerenciar contatos e deals",
+      "prerequisites": ["Entidades: Contatos, Empresas, Deals", "Pipeline de vendas definido"],
+      "steps": [
+        "Criar tabelas: contatos, empresas, deals, atividades",
+        "Implementar Kanban de deals (pipeline visual)",
+        "Adicionar formulário de contato e deal",
+        "Implementar busca e filtros",
+        "Adicionar notas e histórico de atividades",
+        "Integrar com email/WhatsApp via n8n",
+        "Deploy"
+      ],
+      "pitfalls": ["Sem histórico de interações", "Pipeline sem automação", "Dados duplicados"],
+      "done_definition": "Vendedor gerencia pipeline completo e tem histórico de cada contato.",
+      "stack_variants": {
+        "rapida": ["Lovable", "Supabase", "Vercel"],
+        "robusta": ["Next.js", "Supabase", "n8n", "Vercel"]
+      },
+      "prompts": ["Crie CRM com Kanban de deals, contatos e histórico de atividades."]
+    },
+    {
+      "id": "P_DASHBOARD",
+      "goal": "Dashboard analítico com KPIs e gráficos",
+      "prerequisites": ["Dados disponíveis (banco ou API)", "KPIs definidos"],
+      "steps": [
+        "Definir KPIs e métricas principais",
+        "Criar queries de agregação no Supabase",
+        "Implementar cards de KPI",
+        "Adicionar gráficos (linha, barra, pizza)",
+        "Implementar filtros (período, categoria)",
+        "Adicionar exportação (CSV/PDF)",
+        "Otimizar performance das queries"
+      ],
+      "pitfalls": ["Queries lentas sem índices", "Gráficos sem contexto", "Sem filtro de período"],
+      "done_definition": "Gestor visualiza KPIs atualizados e filtra por período.",
+      "stack_variants": {
+        "rapida": ["Lovable", "Supabase", "Recharts"],
+        "robusta": ["Next.js", "Supabase", "Recharts", "Cache"]
+      },
+      "prompts": ["Crie dashboard com 4 KPIs, gráfico de linha e filtro por período."]
+    },
+    {
+      "id": "P_EMAIL_AUTO",
+      "goal": "Automação de emails baseada em eventos",
+      "prerequisites": ["Provedor de email (Resend/SendGrid)", "Eventos definidos (signup, compra, etc.)"],
+      "steps": [
+        "Configurar provedor de email",
+        "Criar templates de email (HTML)",
+        "Configurar triggers no n8n/Make",
+        "Implementar: boas-vindas, confirmação, lembrete",
+        "Adicionar tracking de abertura/clique",
+        "Testar entregabilidade (spam score)"
+      ],
+      "pitfalls": ["Emails no spam", "Sem unsubscribe", "Templates quebrados no mobile"],
+      "done_definition": "Emails disparam automaticamente e chegam na caixa de entrada.",
+      "stack_variants": {
+        "rapida": ["n8n", "Resend", "Templates HTML"],
+        "robusta": ["API própria", "Resend", "Fila", "Analytics"]
+      },
+      "prompts": ["Configure automação de email de boas-vindas e lembrete com n8n + Resend."]
+    }
+  ],
+  "decision_rules": [
+    {
+      "id": "R1",
+      "if": { "app_type": "landing", "needs_auth": false, "needs_db": false },
+      "then": {
+        "primary_stack": ["Builder (Lovable/Bolt)", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Webflow/Framer", "Zapier/Make"] },
+          { "label": "Robusta", "stack": ["Next.js", "Vercel", "Google Analytics"] }
+        ],
+        "tools_to_master": ["LLM (Claude/ChatGPT)", "Builder/Framer", "Vercel", "Analytics", "Copy/Design"],
+        "checklist": ["Definir oferta e CTA", "Criar wireframe", "Implementar formulário", "Configurar analytics", "Publicar e testar mobile"],
+        "risks": ["Sem rastrear conversão", "Formulário quebrado no mobile", "Copy fraca sem prova social"]
+      },
+      "explain_leigo": "Para landing, o foco é velocidade, design e captação. Você não precisa banco no começo."
+    },
+    {
+      "id": "R2",
+      "if": { "app_type": "saas", "needs_auth": true, "needs_db": true, "budget": "low" },
+      "then": {
+        "primary_stack": ["Lovable/Bolt", "Supabase", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Builder", "Firebase", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Stripe", "Vercel"] }
+        ],
+        "tools_to_master": ["LLM", "Supabase", "Builder", "Vercel", "n8n"],
+        "checklist": ["Definir entidades e fluxos", "Configurar Supabase", "Criar telas CRUD", "Implementar auth", "Deploy e testar"],
+        "risks": ["Permissões mal feitas", "Dados sem validação", "Sem backup"]
+      },
+      "explain_leigo": "SaaS com login e banco pede Supabase. Builder acelera MVP; depois você evolui."
+    },
+    {
+      "id": "R3",
+      "if": { "app_type": "saas", "needs_auth": true, "needs_db": true, "budget": "medium" },
+      "then": {
+        "primary_stack": ["Next.js", "Supabase", "Stripe", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Lovable", "Supabase", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Stripe", "Sentry", "PostHog"] }
+        ],
+        "tools_to_master": ["Next.js", "Supabase", "Stripe", "Vercel", "Cursor"],
+        "checklist": ["PRD completo", "Setup Next.js + Supabase", "Auth + RBAC", "CRUD + validações", "Pagamentos", "Deploy + monitoramento"],
+        "risks": ["Escopo grande demais", "Sem testes", "Sem monitoramento"]
+      },
+      "explain_leigo": "Com mais orçamento, vale investir em Next.js + Stripe para um produto mais robusto."
+    },
+    {
+      "id": "R4",
+      "if": { "app_type": "agent", "needs_rag": true },
+      "then": {
+        "primary_stack": ["Supabase (pgvector)", "Claude/GPT", "Next.js", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Flowise", "Railway", "LLM"] },
+          { "label": "Robusta", "stack": ["Langflow", "Supabase", "Avaliação", "Vercel"] }
+        ],
+        "tools_to_master": ["LLM", "RAG/Embeddings", "Supabase pgvector", "Prompts", "Deploy"],
+        "checklist": ["Coletar documentos", "Chunking e embeddings", "Busca vetorial", "Prompt com contexto", "UI de chat", "Testes com perguntas reais"],
+        "risks": ["RAG mal configurado", "Chunks grandes demais", "Sem controle de acesso aos docs"]
+      },
+      "explain_leigo": "Agente com memória exige RAG. Primeiro faça funcionar com poucos docs, depois escala."
+    },
+    {
+      "id": "R5",
+      "if": { "app_type": "agent", "needs_rag": false },
+      "then": {
+        "primary_stack": ["Langflow/Flowise", "Claude/GPT", "Railway"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Flowise", "Railway"] },
+          { "label": "Robusta", "stack": ["Código próprio", "Supabase", "Vercel", "Sentry"] }
+        ],
+        "tools_to_master": ["LLM", "Prompt Engineering", "Langflow/Flowise", "Deploy", "Webhooks"],
+        "checklist": ["Definir persona do agente", "Mapear ferramentas", "Implementar loop agente", "Testar edge cases", "Deploy com monitoramento"],
+        "risks": ["Loops infinitos", "Sem fallback humano", "Custo de API alto"]
+      },
+      "explain_leigo": "Agente sem RAG é mais simples. Use builders visuais para prototipar rápido."
+    },
+    {
+      "id": "R6",
+      "if": { "app_type": "automation", "needs_auth": false, "needs_db": false },
+      "then": {
+        "primary_stack": ["n8n", "Railway"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Zapier", "Google Sheets"] },
+          { "label": "Robusta", "stack": ["n8n", "Supabase", "Railway", "Sentry"] }
+        ],
+        "tools_to_master": ["n8n", "Webhooks", "APIs", "Railway", "Logs"],
+        "checklist": ["Mapear gatilhos e ações", "Configurar n8n", "Testar fluxo completo", "Adicionar tratamento de erro", "Deploy"],
+        "risks": ["Sem tratamento de erro", "Sem logs", "Dependência de serviço externo"]
+      },
+      "explain_leigo": "Para automação pura, n8n é o canivete suíço. Comece simples e vá adicionando."
+    },
+    {
+      "id": "R7",
+      "if": { "app_type": "automation", "needs_auth": false, "needs_db": true },
+      "then": {
+        "primary_stack": ["n8n", "Supabase", "Railway"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Make", "Google Sheets"] },
+          { "label": "Robusta", "stack": ["n8n", "Supabase", "Railway", "Sentry"] }
+        ],
+        "tools_to_master": ["n8n", "Supabase", "Webhooks", "Railway", "SQL básico"],
+        "checklist": ["Definir entidades", "Configurar Supabase", "Criar workflows n8n", "Conectar via webhooks", "Testar e monitorar"],
+        "risks": ["Dados inconsistentes", "Sem validação", "Workflows frágeis"]
+      },
+      "explain_leigo": "Automação com banco permite persistir dados e criar relatórios depois."
+    },
+    {
+      "id": "R8",
+      "if": { "app_type": "crm", "needs_auth": true, "needs_db": true },
+      "then": {
+        "primary_stack": ["Next.js/Lovable", "Supabase", "n8n", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Lovable", "Supabase", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "n8n", "Stripe", "Vercel"] }
+        ],
+        "tools_to_master": ["Supabase", "Next.js/Builder", "n8n", "Vercel", "UX de CRM"],
+        "checklist": ["Definir pipeline de vendas", "Criar tabelas", "Implementar Kanban", "Adicionar contatos e deals", "Integrar email/WhatsApp", "Deploy"],
+        "risks": ["Pipeline sem automação", "Dados duplicados", "Sem histórico de interações"]
+      },
+      "explain_leigo": "CRM precisa de banco robusto e automação. Supabase + n8n é a combinação ideal."
+    },
+    {
+      "id": "R9",
+      "if": { "app_type": "dashboard", "needs_auth": true, "needs_db": true },
+      "then": {
+        "primary_stack": ["Next.js", "Supabase", "Recharts", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Lovable", "Supabase", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Recharts", "Cache", "Vercel"] }
+        ],
+        "tools_to_master": ["Supabase SQL", "Recharts", "Next.js", "Vercel", "UX de dados"],
+        "checklist": ["Definir KPIs", "Criar queries de agregação", "Implementar cards e gráficos", "Adicionar filtros", "Otimizar performance", "Deploy"],
+        "risks": ["Queries lentas", "Gráficos sem contexto", "Sem filtro de período"]
+      },
+      "explain_leigo": "Dashboard precisa de dados bem estruturados. Invista tempo nas queries antes da UI."
+    },
+    {
+      "id": "R10",
+      "if": { "app_type": "bot_whatsapp", "needs_auth": false, "needs_db": true },
+      "then": {
+        "primary_stack": ["n8n", "Supabase", "WhatsApp API", "Railway"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["n8n Cloud", "Google Sheets", "WhatsApp API"] },
+          { "label": "Robusta", "stack": ["API própria", "Supabase", "Fila", "Railway"] }
+        ],
+        "tools_to_master": ["n8n", "WhatsApp API", "Webhooks", "Supabase", "Railway"],
+        "checklist": ["Configurar WhatsApp API", "Criar webhook", "Salvar mensagens", "Implementar respostas", "Adicionar fallback humano", "Deploy"],
+        "risks": ["Sem fallback humano", "Sem logs", "Rate limiting da API"]
+      },
+      "explain_leigo": "Bot de WhatsApp precisa de webhook + banco. n8n facilita muito o fluxo."
+    },
+    {
+      "id": "R11",
+      "if": { "app_type": "ecommerce", "needs_auth": true, "needs_db": true },
+      "then": {
+        "primary_stack": ["Next.js", "Supabase", "Stripe", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Shopify", "Zapier"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Stripe", "n8n", "Sentry"] }
+        ],
+        "tools_to_master": ["Next.js", "Supabase", "Stripe", "Vercel", "SEO"],
+        "checklist": ["Catálogo de produtos", "Carrinho e checkout", "Pagamentos", "Gestão de pedidos", "Emails transacionais", "Deploy"],
+        "risks": ["Checkout complexo", "Estoque desatualizado", "Sem emails transacionais"]
+      },
+      "explain_leigo": "E-commerce custom dá trabalho. Avalie se Shopify não resolve antes de construir do zero."
+    },
+    {
+      "id": "R12",
+      "if": { "app_type": "marketplace", "needs_auth": true, "needs_db": true },
+      "then": {
+        "primary_stack": ["Next.js", "Supabase", "Stripe Connect", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Lovable", "Supabase", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Stripe Connect", "n8n", "Sentry"] }
+        ],
+        "tools_to_master": ["Next.js", "Supabase", "Stripe Connect", "RBAC", "Vercel"],
+        "checklist": ["Multi-tenant com RLS", "Perfis vendedor/comprador", "Listagem e busca", "Pagamento split", "Avaliações", "Deploy"],
+        "risks": ["Split de pagamento complexo", "Moderação de conteúdo", "Multi-tenancy mal feita"]
+      },
+      "explain_leigo": "Marketplace é complexo. Comece com um lado (vendedor ou comprador) e valide antes de escalar."
+    },
+    {
+      "id": "R13",
+      "if": { "app_type": "internal_tool", "needs_auth": true, "needs_db": true, "budget": "low" },
+      "then": {
+        "primary_stack": ["Lovable", "Supabase", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Retool/Budibase", "Supabase"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "RBAC", "Vercel"] }
+        ],
+        "tools_to_master": ["Builder", "Supabase", "RBAC", "Vercel", "n8n"],
+        "checklist": ["Mapear processos internos", "Definir perfis de acesso", "Criar telas operacionais", "Implementar RBAC", "Deploy interno"],
+        "risks": ["Sem RBAC", "Dados sensíveis expostos", "Sem audit log"]
+      },
+      "explain_leigo": "Ferramenta interna pode ser simples, mas precisa de controle de acesso desde o dia 1."
+    },
+    {
+      "id": "R14",
+      "if": { "app_type": "saas", "needs_auth": true, "needs_db": true, "budget": "high" },
+      "then": {
+        "primary_stack": ["Next.js", "Supabase", "Stripe", "Sentry", "PostHog", "Vercel"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["Next.js", "Supabase", "Stripe", "Vercel"] },
+          { "label": "Robusta", "stack": ["Next.js", "Supabase", "Stripe", "n8n", "Sentry", "PostHog", "Vercel"] }
+        ],
+        "tools_to_master": ["Next.js", "Supabase", "Stripe", "Cursor", "Sentry", "PostHog"],
+        "checklist": ["Arquitetura completa", "Auth + RBAC + multi-tenant", "CRUD + validações", "Pagamentos + portal", "Monitoramento + analytics", "CI/CD + testes", "Deploy"],
+        "risks": ["Over-engineering no MVP", "Sem métricas de produto", "Sem testes automatizados"]
+      },
+      "explain_leigo": "Com orçamento alto, invista em qualidade: monitoramento, analytics e testes desde o início."
+    },
+    {
+      "id": "R15",
+      "if": { "app_type": "mobile", "needs_auth": true, "needs_db": true },
+      "then": {
+        "primary_stack": ["React Native/Expo", "Supabase", "EAS Build"],
+        "alt_stacks": [
+          { "label": "Rápida/Barata", "stack": ["FlutterFlow", "Firebase"] },
+          { "label": "Robusta", "stack": ["React Native", "Supabase", "Stripe", "Sentry"] }
+        ],
+        "tools_to_master": ["React Native", "Expo", "Supabase", "App Store/Play Store", "Push Notifications"],
+        "checklist": ["Setup Expo", "Configurar Supabase", "Telas principais", "Auth mobile", "Push notifications", "Build e publicar nas stores"],
+        "risks": ["Rejeição nas stores", "Performance ruim", "Notificações não configuradas"]
+      },
+      "explain_leigo": "App mobile exige publicação nas stores. Expo simplifica muito, mas teste em dispositivos reais."
+    }
+  ]
+}
