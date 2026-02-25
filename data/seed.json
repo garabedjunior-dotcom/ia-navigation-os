@@ -2113,7 +2113,27 @@
       "prompts": [
         "Crie uma landing page premium com CTA claro e formulário de lead.",
         "Gere copy com foco em conversão e prova."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "nome_projeto",
+            "label": "Nome da Landing Page",
+            "placeholder": "Ex: Projeto Alpha"
+          },
+          {
+            "id": "nicho",
+            "label": "Nicho / Público",
+            "placeholder": "Ex: Médicos, Advogados, etc."
+          },
+          {
+            "id": "oferta",
+            "label": "Oferta Principal",
+            "placeholder": "Ex: Consultoria Grátis, Ebook..."
+          }
+        ],
+        "template": "Você é um especialista em conversão. Crie o código para uma landing page premium para o projeto {{nome_projeto}}, focada no nicho de {{nicho}}. A oferta principal é {{oferta}}. Use a stack {{stack_recomendada}}. O design deve ser moderno, dark mode, com seções de Hero, Benefícios, Prova Social e um formulário de captura de leads que salva no banco de dados."
+      }
     },
     {
       "id": "P_CRUD_AUTH",
@@ -2150,7 +2170,22 @@
       },
       "prompts": [
         "Crie CRUD completo com login e rotas protegidas."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "entidade",
+            "label": "O que será gerenciado?",
+            "placeholder": "Ex: Clientes, Inventário..."
+          },
+          {
+            "id": "campos",
+            "label": "Camos Principais",
+            "placeholder": "Ex: Nome, Email, Status..."
+          }
+        ],
+        "template": "Atue como um desenvolvedor Fullstack Senior. Implemente um sistema de CRUD completo para gerenciar {{entidade}}. Os campos necessários são: {{campos}}. Inclua autenticação de usuários, rotas protegidas no backend e uma interface limpa para listar, criar, editar e deletar registros. Use {{stack_recomendada}}."
+      }
     },
     {
       "id": "P_RBAC",
@@ -2184,7 +2219,22 @@
       },
       "prompts": [
         "Implemente RBAC com 3 perfis e restrinja ações por perfil."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "papeis",
+            "label": "Papéis de Usuário",
+            "placeholder": "Ex: Admin, Editor, Visualizador"
+          },
+          {
+            "id": "recursos",
+            "label": "Recursos Protegidos",
+            "placeholder": "Ex: Financeiro, Relatórios"
+          }
+        ],
+        "template": "Implemente um sistema de controle de acesso baseado em funções (RBAC) usando {{stack_recomendada}}. Os papéis são {{papeis}} e eles devem ter permissões distintas sobre os recursos {{recursos}}. Garanta que o backend valide as permissões em cada requisição e o frontend esconda elementos não autorizados."
+      }
     },
     {
       "id": "P_RAG_DOCS",
@@ -2221,7 +2271,22 @@
       },
       "prompts": [
         "Crie um chat RAG com upload de PDF e busca vetorial."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "tipo_doc",
+            "label": "Tipo de Documento",
+            "placeholder": "Ex: PDFs de Contratos, Manuais Técnicos"
+          },
+          {
+            "id": "uso",
+            "label": "Objetivo do Chat",
+            "placeholder": "Ex: Tirar dúvidas jurídicas, Suporte Técnico"
+          }
+        ],
+        "template": "Crie um sistema de RAG (Retrieval-Augmented Generation) que permita conversar com {{tipo_doc}}. O objetivo é {{uso}}. Use {{stack_recomendada}} com uma base de vetores para busca semântica. O prompt do sistema deve garantir que as respostas sejam baseadas apenas nos documentos fornecidos."
+      }
     },
     {
       "id": "P_BOT_WA",
@@ -2258,7 +2323,22 @@
       },
       "prompts": [
         "Implemente fluxo WhatsApp webhook → salvar → responder → logar."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "objetivo_bot",
+            "label": "Objetivo do Bot",
+            "placeholder": "Ex: Agendamento de Consultas"
+          },
+          {
+            "id": "fluxo",
+            "label": "Fluxo Principal",
+            "placeholder": "Ex: Saudação -> Opções -> Salvar no Banco"
+          }
+        ],
+        "template": "Desenvolva um chatbot para WhatsApp usando {{stack_recomendada}}. O objetivo principal é {{objetivo_bot}}. O fluxo deve seguir: {{fluxo}}. Integre com uma API de mensageria e garanta que os dados coletados sejam persistidos corretamente para consulta posterior."
+      }
     },
     {
       "id": "P_DEPLOY_DOMAIN",
@@ -2290,7 +2370,22 @@
       },
       "prompts": [
         "Crie checklist de deploy com DNS e variáveis."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "plataforma",
+            "label": "Plataforma de Deploy",
+            "placeholder": "Ex: Vercel, Netlify, Railway"
+          },
+          {
+            "id": "dominio",
+            "label": "Domínio Desejado",
+            "placeholder": "Ex: app.meuprojeto.com.br"
+          }
+        ],
+        "template": "Gere um guia passo a passo e as configurações necessárias para fazer o deploy da aplicação na plataforma {{plataforma}} e configurar o domínio customizado {{dominio}}. Inclua configurações de SSL, variáveis de ambiente e registros DNS (A, CNAME)."
+      }
     },
     {
       "id": "P_SAAS_MVP",
@@ -2333,7 +2428,22 @@
       "prompts": [
         "Crie um SaaS MVP com login, dashboard e CRUD para [domínio].",
         "Configure Supabase com auth, tabelas e RLS para multi-tenant."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "nome_saas",
+            "label": "Nome do SaaS",
+            "placeholder": "Ex: GlosaFácil"
+          },
+          {
+            "id": "problema",
+            "label": "Problema que resolve",
+            "placeholder": "Ex: Gestão de glosas médicas para pequenos hospitais"
+          }
+        ],
+        "template": "Você é um Arquiteto de Produto. Projete e implemente o MVP do SaaS {{nome_saas}}, que resolve o problema de {{problema}}. Use a stack {{stack_recomendada}}. O sistema deve incluir Landing Page, Auth, Dashboard, a funcionalidade principal de IA e integração de pagamentos."
+      }
     },
     {
       "id": "P_PAYMENTS",
@@ -2372,7 +2482,22 @@
       },
       "prompts": [
         "Integre Stripe Checkout com webhooks e atualize status no Supabase."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "modelo",
+            "label": "Modelo de Cobrança",
+            "placeholder": "Ex: Assinatura Mensal, Pay-per-use"
+          },
+          {
+            "id": "produto",
+            "label": "Nome do Produto/Plano",
+            "placeholder": "Ex: Plano Pro, Créditos de IA"
+          }
+        ],
+        "template": "Integre um sistema de pagamentos (Stripe) para o produto {{produto}} usando o modelo {{modelo}}. Configure webhooks para atualizar o status do usuário no banco de dados automaticamente após o pagamento e crie uma área de checkout segura usando {{stack_recomendada}}."
+      }
     },
     {
       "id": "P_AGENT_BUILDER",
@@ -2412,7 +2537,22 @@
       },
       "prompts": [
         "Crie um agente que [objetivo] usando [ferramentas] com fallback humano."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "persona",
+            "label": "Persona do Agente",
+            "placeholder": "Ex: Analista de Dados, Pesquisador"
+          },
+          {
+            "id": "ferramentas",
+            "label": "Ferramentas (Tools)",
+            "placeholder": "Ex: Busca Web, Calculadora, Acesso a DB"
+          }
+        ],
+        "template": "Construa um agente de IA autônomo com a persona de {{persona}}. O agente deve ter acesso às seguintes ferramentas: {{ferramentas}}. Use {{stack_recomendada}} (LangChain/LangGraph) para gerenciar o raciocínio do agente e a execução das ferramentas."
+      }
     },
     {
       "id": "P_CRM_SIMPLE",
@@ -2451,7 +2591,22 @@
       },
       "prompts": [
         "Crie CRM com Kanban de deals, contatos e histórico de atividades."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "setor",
+            "label": "Setor de Vendas",
+            "placeholder": "Ex: Imobiliária, SaaS B2B"
+          },
+          {
+            "id": "estagios",
+            "label": "Estágios do Funil",
+            "placeholder": "Ex: Lead -> Reunião -> Proposta -> Fechado"
+          }
+        ],
+        "template": "Crie um CRM simplificado para o setor de {{setor}}. O funil de vendas deve ter os estágios: {{estagios}}. Implemente uma visão de pipeline (Kanban), gestão de contatos e histórico de interações usando {{stack_recomendada}}."
+      }
     },
     {
       "id": "P_DASHBOARD",
@@ -2490,7 +2645,22 @@
       },
       "prompts": [
         "Crie dashboard com 4 KPIs, gráfico de linha e filtro por período."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "metricas",
+            "label": "Métricas Principais",
+            "placeholder": "Ex: MRR, Churn, CAC, Usuários Ativos"
+          },
+          {
+            "id": "fonte_dados",
+            "label": "Fonte dos Dados",
+            "placeholder": "Ex: Banco de Dados SQL, API do Stripe"
+          }
+        ],
+        "template": "Desenvolva um dashboard analítico focado nas métricas {{metricas}}. Os dados devem ser extraídos de {{fonte_dados}}. Use {{stack_recomendada}} com bibliotecas de gráficos (Chart.js/Recharts) para criar visualizações interativas e filtros de data."
+      }
     },
     {
       "id": "P_EMAIL_AUTO",
@@ -2528,7 +2698,22 @@
       },
       "prompts": [
         "Configure automação de email de boas-vindas e lembrete com n8n + Resend."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "evento",
+            "label": "Evento de Gatilho",
+            "placeholder": "Ex: Novo Cadastro, Carrinho Abandonado"
+          },
+          {
+            "id": "conteudo",
+            "label": "Conteúdo do Email",
+            "placeholder": "Ex: Boas-vindas com cupom de desconto"
+          }
+        ],
+        "template": "Configure uma automação de email que é disparada pelo evento {{evento}}. O email deve conter {{conteudo}}. Use {{stack_recomendada}} integrada com um serviço de disparo (Resend/SendGrid) e garanta que o template seja responsivo."
+      }
     },
     {
       "id": "P_LLM_API_INTEGRATION",
@@ -2586,7 +2771,22 @@
         "Implemente um componente React de chat com IA que mostra a resposta sendo digitada em tempo real, com indicador de loading e tratamento de erro.",
         "Crie um middleware de rate limiting que permite no máximo 20 chamadas de IA por usuário por hora, com resposta 429 amigável.",
         "Implemente um sistema de cache que armazena respostas de IA por hash do prompt, com TTL de 1 hora, usando Redis."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "funcionalidade",
+            "label": "Funcionalidade de IA",
+            "placeholder": "Ex: Gerador de Relatórios, Tradutor"
+          },
+          {
+            "id": "modelo_preferido",
+            "label": "Modelo Preferido",
+            "placeholder": "Ex: GPT-4o-mini, Claude 3.5 Sonnet"
+          }
+        ],
+        "template": "Implemente a integração da API de LLM para criar um {{funcionalidade}} usando o modelo {{modelo_preferido}}. Use {{stack_recomendada}}. Garanta o uso de streaming para a resposta, tratamento de erros robusto, rate limiting e cache para otimização de custos."
+      }
     },
     {
       "id": "P_AI_CHATBOT_EMBED",
@@ -2646,7 +2846,22 @@
         "Implemente um pipeline de RAG que: 1) recebe a pergunta do usuário, 2) gera embedding, 3) busca top-5 chunks no Supabase pgvector, 4) monta prompt com contexto e 5) chama GPT-4o-mini com streaming.",
         "Crie um system prompt para chatbot de suporte que: responde apenas com base no contexto fornecido, admite quando não sabe, sugere falar com humano em casos complexos e mantém tom profissional.",
         "Implemente um script de ingestão que lê arquivos Markdown de uma pasta /docs, divide em chunks de 500 tokens com overlap de 50, gera embeddings e salva no Supabase pgvector."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "site_alvo",
+            "label": "Onde será inserido?",
+            "placeholder": "Ex: E-commerce de Moda, Blog de Tecnologia"
+          },
+          {
+            "id": "personalidade",
+            "label": "Personalidade do Bot",
+            "placeholder": "Ex: Amigável, Técnico, Vendedor"
+          }
+        ],
+        "template": "Crie um widget de chatbot de IA para ser inserido em um {{site_alvo}}. O bot deve ter uma personalidade {{personalidade}}. Use {{stack_recomendada}} para criar o widget, o backend de processamento e a base de conhecimento contextual."
+      }
     },
     {
       "id": "P_AI_FEATURE_LAYER",
@@ -2705,7 +2920,22 @@
         "Implemente um componente React 'AIActionButton' reutilizável que: mostra botão com ícone ✨, ao clicar chama a API de IA, exibe loading, mostra resultado com opções Aceitar/Editar/Rejeitar.",
         "Crie um sistema de processamento em lote que: recebe array de IDs, cria jobs no BullMQ, processa 5 em paralelo, atualiza progresso em tempo real via WebSocket e salva resultados no banco.",
         "Implemente um CRUD de prompts versionados com campos: id, task_type, version, system_prompt, user_prompt_template, model, temperature, is_active. Inclua endpoint para A/B testing entre versões."
-      ]
+      ],
+      "prompt_generator": {
+        "inputs": [
+          {
+            "id": "app_atual",
+            "label": "Seu App Atual",
+            "placeholder": "Ex: Gestor de Tarefas, ERP de Logística"
+          },
+          {
+            "id": "tarefa_ia",
+            "label": "Tarefa para IA",
+            "placeholder": "Ex: Categorizar tarefas, Sugerir rotas"
+          }
+        ],
+        "template": "Adicione uma camada de inteligência ao seu app {{app_atual}}. A tarefa principal da IA será {{tarefa_ia}}. Use {{stack_recomendada}} para processar os dados existentes e retornar sugestões estruturadas que o usuário possa aceitar ou editar."
+      }
     }
   ],
   "decision_rules": [
